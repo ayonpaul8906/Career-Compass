@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 165 13% 95%;
+    --foreground: 224 71% 4%;
+    --card: 165 13% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 165 13% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 177 20% 54%;
+    --primary-foreground: 177 20% 98%;
+    --secondary: 177 15% 90%;
+    --secondary-foreground: 177 20% 30%;
+    --muted: 177 15% 90%;
+    --muted-foreground: 177 10% 45%;
+    --accent: 50 78% 77%;
+    --accent-foreground: 50 78% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 177 20% 85%;
+    --input: 177 20% 88%;
+    --ring: 177 20% 54%;
+    --chart-1: 177 30% 50%;
+    --chart-2: 50 80% 60%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.8rem;
+    --sidebar-background: 165 13% 98%;
+    --sidebar-foreground: 224 71% 10%;
+    --sidebar-primary: 177 20% 54%;
+    --sidebar-primary-foreground: 177 20% 98%;
+    --sidebar-accent: 177 15% 90%;
+    --sidebar-accent-foreground: 177 20% 20%;
+    --sidebar-border: 177 15% 88%;
+    --sidebar-ring: 177 20% 54%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 165 13% 95%;
+    --card: 224 71% 6%;
+    --card-foreground: 165 13% 95%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 165 13% 95%;
+    --primary: 177 20% 54%;
+    --primary-foreground: 177 20% 98%;
+    --secondary: 177 15% 15%;
+    --secondary-foreground: 177 20% 90%;
+    --muted: 177 15% 15%;
+    --muted-foreground: 177 10% 60%;
+    --accent: 50 78% 77%;
+    --accent-foreground: 50 78% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 177 15% 20%;
+    --input: 177 15% 20%;
+    --ring: 177 20% 54%;
+    --chart-1: 177 30% 50%;
+    --chart-2: 50 80% 60%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --sidebar-background: 224 71% 6%;
+    --sidebar-foreground: 165 13% 95%;
+    --sidebar-primary: 177 20% 54%;
+    --sidebar-primary-foreground: 177 20% 98%;
+    --sidebar-accent: 177 15% 15%;
+    --sidebar-accent-foreground: 177 20% 90%;
+    --sidebar-border: 177 15% 20%;
+    --sidebar-ring: 177 20% 54%;
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+.glassmorphic {
+  background-color: hsl(var(--card) / 0.6);
+}
