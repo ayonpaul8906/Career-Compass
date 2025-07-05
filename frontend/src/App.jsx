@@ -6,7 +6,7 @@ import LoginPage from './login/login';
 import QuizFlow from './components/quiz/QuizFlow';
 import OpportunityList from './components/opportunities/OpportunityList';
 import ChatInterface from './components/chatbot/ChatInterface';
-import ProjectsPage from './dashboard/projects/project_page';
+import RoadmapPage from './dashboard/roadmaps/CareerRoadmapsPage';
 import DashboardLayout from './dashboard/layout';
 import OverviewPage from './dashboard/overview/overview_page';
 import Opportunity from './dashboard/opportunities/opportunity_page';
@@ -25,7 +25,7 @@ function App() {
           <Route path="/chat" element={<ChatInterface />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<OverviewPage />} />
-            <Route path="projects" element={<ProjectsPage />} />
+            <Route path="roadmaps" element={<RoadmapPage />} />
             <Route path="opportunity" element={<Opportunity />} />
             <Route path="chatbot" element={<ChatBot />} />
             <Route path="quiz" element={<Quiz />} />
