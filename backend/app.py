@@ -34,7 +34,7 @@ model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Flask app
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
+CORS(app, origins=["https://career-compass-4a13f.web.app"], supports_credentials=True)
 
 # In-memory rate limiter store
 user_request_log = {}
