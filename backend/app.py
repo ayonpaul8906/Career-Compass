@@ -15,12 +15,16 @@ from PIL import Image
 
 load_dotenv() 
 # ---- CONFIG ----
-FIREBASE_CRED_PATH = 'firebase-adminsdk.json'
+firebase_json = os.getenv("FIREBASE_ADMIN_SDK_JSON")
+if not firebase_json:
+    raise ValueError("Missing FIREBASE_ADMIN_SDK_JSON environment variable")
+
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 # ----------------
 
 # Firebase
-cred = credentials.Certificate(FIREBASE_CRED_PATH)
+cred = credentials.Certificate(json.loads(firebase_json))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
