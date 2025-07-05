@@ -44,9 +44,13 @@ export default function DashboardLayout() {
 
   // 💡 New robust active match function
   const isNavItemActive = (path) => {
-    const resolved = useResolvedPath(path);
-    return useMatch({ path: resolved.pathname, end: false });
-  };
+  const resolved = useResolvedPath(path);
+  // Only Overview should use end: true
+  if (path === '/dashboard') {
+    return useMatch({ path: resolved.pathname, end: true });
+  }
+  return useMatch({ path: resolved.pathname, end: false });
+};
 
   const handleLogout = async () => {
     await signOut(auth);
