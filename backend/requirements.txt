@@ -1,0 +1,10 @@
+Flask
+Flask-Cors
+firebase-admin
+google-generativeai
+python-dotenv 
+PyPDF2
+python-docx 
+Pillow 
+pytesseract 
+gunicorn
