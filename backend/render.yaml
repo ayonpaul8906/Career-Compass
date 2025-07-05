@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: career-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    workingDir: backend
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
