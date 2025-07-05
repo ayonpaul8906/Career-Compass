@@ -31,7 +31,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <img
-                src="../../public/career.png"
+                src="/career.png"
                 alt="Hero"
                 className="mx-auto rounded-xl shadow-2xl object-cover w-full h-auto lg:order-last animate-fade-in"
               />
