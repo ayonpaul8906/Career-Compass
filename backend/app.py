@@ -10,7 +10,7 @@ import docx
 from dotenv import load_dotenv
 import os
 import json
-# import pytesseract
+import pytesseract
 from PIL import Image
 
 load_dotenv() 
@@ -87,9 +87,9 @@ def extract_text_from_file(file):
     elif filename.endswith('.docx'):
         doc_file = docx.Document(file)
         return '\n'.join([para.text for para in doc_file.paragraphs])
-    # elif filename.endswith(('.png', '.jpg', '.jpeg')):
-    #     image = Image.open(file)
-    #     return pytesseract.image_to_string(image)
+    elif filename.endswith(('.png', '.jpg', '.jpeg')):
+        image = Image.open(file)
+        return pytesseract.image_to_string(image)
     else:
         return ''
 

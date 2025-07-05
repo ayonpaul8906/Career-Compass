@@ -15,8 +15,8 @@ import { db, auth } from '../../lib/firebase';
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-const API_URL = 'http://localhost:5000/chat';
-const CLEAR_URL = 'http://localhost:5000/clear';
+const API_URL = 'https://career-compass-gdg.onrender.com/chat';
+const CLEAR_URL = 'https://career-compass-gdg.onrender.com/clear';
 
 function FilePreview({ file }) {
   if (!file) return null;
