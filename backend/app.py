@@ -9,6 +9,7 @@ import PyPDF2
 import docx
 from dotenv import load_dotenv
 import os
+import json
 import pytesseract
 from PIL import Image
 
@@ -29,7 +30,7 @@ model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Flask app
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 
 # In-memory rate limiter store
 user_request_log = {}
@@ -162,6 +163,75 @@ def clear():
     except Exception as e:
         print("Error:", e)
         return jsonify({'error': 'Failed to clear conversation.'}), 500
+    
+@app.route('/quiz', methods=['POST'])
+def handle_quiz():
+    data = request.json
+    stream = data.get('stream')
+    answers = data.get('answers', {})
+
+    # Add explicit first question
+    if not answers:
+        if stream == "science":
+            return jsonify({
+                "type": "question",
+                "question": "Which field are you most interested in within Science?",
+                "options": ["Engineering", "Medical", "Pure Science & Research"]
+            })
+        elif stream == "commerce":
+            return jsonify({
+                "type": "question",
+                "question": "Which area within Commerce excites you the most?",
+                "options": ["Finance & Analysis", "Marketing & Sales", "Business Management", "Policy & Economics"]
+            })
+        elif stream == "arts":
+            return jsonify({
+                "type": "question",
+                "question": "Which area in Arts & Humanities inspires you the most?",
+                "options": ["Design & Visual Arts", "Performing Arts", "Social Sciences", "Literature & Languages"]
+            })
+        else:
+            return jsonify({"error": "Invalid stream selected"}), 400
+
+    # Compose prompt for Gemini for follow-up
+    prompt = f"""
+You are an adaptive career quiz assistant. The user selected stream: {stream}.
+Here are the answers so far: {json.dumps(answers, indent=2)}
+
+Based on these answers, decide what to do next:
+- If you need to ask a new question to refine understanding, suggest a new question with 2-3 options.
+- If enough answers are given, provide a final personalized career recommendation.
+
+When providing the final recommendation, make sure to:
+• Give a brief summary of the suggested career path.
+• Include a list of **study lines or degree programs** to pursue (e.g., B.Tech in Computer Science, MBBS, B.Sc in Chemistry, BBA, BA in Psychology, etc.).
+• Write these degree options in **bullet points**, and add a short reason why each option is good for the student.
+
+Respond only as JSON in this format:
+{{
+  "type": "question" or "result",
+  "question": "Next question text" (if type is question),
+  "options": ["Option 1", "Option 2", ...] (if type is question),
+  "result": "Your final career suggestion text with study lines and reasons" (if type is result)
+}}
+"""
+
+
+    try:
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        response = model.generate_content(prompt)
+
+        text = response.text.strip()
+        if text.startswith("```json"):
+            text = text[7:-3].strip()
+
+        result_data = json.loads(text)
+        return jsonify(result_data)
+
+    except Exception as e:
+        print(f"Error during Gemini call: {e}")
+        return jsonify({"error": "Failed to generate quiz content"}), 500
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
