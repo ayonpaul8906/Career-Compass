@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
-import { ArrowRight, Lightbulb, Briefcase, FolderKanban, Bot } from 'lucide-react';
+import { ArrowRight, Lightbulb, Briefcase, Route, Bot } from 'lucide-react';
 
 export default function OverviewPage() {
   return (
@@ -28,11 +28,11 @@ export default function OverviewPage() {
           cta="Browse Now"
         />
         <FeatureCard
-          title="See Peer Projects"
-          description="Get inspired by what others are building and share your own work with the community."
-          href="/dashboard/projects"
-          icon={<FolderKanban className="w-6 h-6 text-blue-600 dark:text-blue-500" />}
-          cta="View Gallery"
+          title="Explore Career Roadmaps"
+          description="Discover step-by-step guides for various careers across all fields — science, commerce, arts, and more — to confidently plan your future."
+          href="/dashboard/roadmaps"
+          icon={<Route className="w-6 h-6 text-blue-600 dark:text-blue-500" />}
+          cta="Explore Roadmaps"
         />
         <FeatureCard
           title="Chat with your AI Mentor"
