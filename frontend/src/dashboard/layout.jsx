@@ -7,9 +7,9 @@ import {
   Briefcase,
   Bot,
   LogOut,
-  FolderKanban,
   Menu,
   X,
+  Route
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../components/ui/avatar';
 import { Button } from '../components/ui/button';
@@ -38,7 +38,7 @@ export default function DashboardLayout() {
     { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
     { href: '/dashboard/quiz', label: 'Interest Quiz', icon: Lightbulb },
     { href: '/dashboard/opportunity', label: 'Opportunities', icon: Briefcase },
-    { href: '/dashboard/projects', label: 'Projects', icon: FolderKanban },
+    { href: '/dashboard/roadmaps', label: 'Roadmaps', icon: Route },
     { href: '/dashboard/chatbot', label: 'AI Mentor', icon: Bot },
   ], []);
 
@@ -114,7 +114,7 @@ export default function DashboardLayout() {
         <header className="md:hidden flex items-center justify-between p-4 border-b bg-white/70 dark:bg-gray-900 backdrop-blur-lg">
           <h1 className="text-lg font-bold font-headline text-gray-900 dark:text-white">Career Compass</h1>
           <Button variant="ghost" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {sidebarOpen ? <X className="w-5 h-5 text-red-500" /> : <Menu className="w-5 h-5 text-white" />}
           </Button>
         </header>
         <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto">
